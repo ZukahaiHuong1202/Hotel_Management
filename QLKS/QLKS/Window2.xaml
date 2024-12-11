@@ -1,0 +1,491 @@
+﻿<Window x:Name="frm_main" x:Class="QLKS.Window2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QLKS"
+        mc:Ignorable="d" Height="682" Width="1204" WindowStartupLocation="CenterScreen" WindowState="Maximized" Title="Welcome To Hotel MIKADORI" Loaded="frm_quanli_Loaded">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="86*"/>
+            <ColumnDefinition Width="18*"/>
+            <ColumnDefinition Width="44*"/>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="124*"/>
+            <ColumnDefinition Width="65*"/>
+            <ColumnDefinition Width="867*"/>
+        </Grid.ColumnDefinitions>
+        <Menu Height="20" VerticalAlignment="Top" Grid.ColumnSpan="7" >
+            <MenuItem Header="User" Height="20" HorizontalAlignment="Right">
+                <Separator/>
+                <TextBlock x:Name="txtb_ttnv" LineHeight="20" />
+                <Separator/>
+                <MenuItem Header="Đổi mật khẩu" Click="MenuItem_Click_1"/>
+                <MenuItem Header="Đăng xuất" Click="MenuItem_Click"/>
+                <Separator/>
+                <MenuItem Header="Thoát" Click="MenuItem_Click_2"/>
+            </MenuItem>
+        </Menu>
+        <TabControl Margin="0,20,0,0" Grid.ColumnSpan="7">
+            <TabItem Header="Bookings">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="63*"/>
+                        <ColumnDefinition Width="26*"/>
+                        <ColumnDefinition Width="76*"/>
+                        <ColumnDefinition Width="1033*"/>
+                    </Grid.ColumnDefinitions>
+                    <TabControl x:Name="tab_bk" Margin="0,27,0,0" SelectionChanged="tab_bk_SelectionChanged" Grid.ColumnSpan="4">
+                        <TabItem Header="Phòng">
+                            <Grid Background="#FFE5E5E5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="140*"/>
+                                    <RowDefinition Height="85*"/>
+                                    <RowDefinition Height="338*"/>
+                                </Grid.RowDefinitions>
+                                <GroupBox Header="Danh sách" Grid.Row="2" Margin="0,20,0,0"/>
+                                <DataGrid x:Name="grdt_bk" Height="NaN" Margin="10,50,10,10" Width="NaN" Grid.Row="2" AutoGenerateColumns="False" SelectionChanged="grdt_bk_SelectionChanged">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Mã booking" Binding="{Binding mabooking}" />
+                                        <DataGridTextColumn Header="Mã khách hàng" Binding="{Binding makh}" />
+                                        <DataGridTextColumn Header="Mã phòng" Binding="{Binding maphong}" />
+                                        <DataGridTextColumn Header="Ngày nhận" Binding="{Binding ngaynhan, StringFormat={}{0:dd/MM/yyyy}}" />
+                                        <DataGridTextColumn Header="Ngày trả" Binding="{Binding ngaytra, StringFormat={}{0:dd/MM/yyyy}}" />
+                                        <DataGridTextColumn Header="Trạng thái" Binding="{Binding trangthai}" />
+                                        <DataGridTextColumn Header="Ghi chú" Binding="{Binding ghichu}" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                                <GroupBox Header="Thông tin"/>
+                                <Label Content="Mã Bookings" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top" Width="81" Height="26"/>
+                                <Label Content="Giới tính" HorizontalAlignment="Left" Margin="685,20,0,0" VerticalAlignment="Top" Width="77" Height="26"/>
+                                <Label Content="Ghi chú khách hàng" HorizontalAlignment="Left" Margin="820,20,0,0" VerticalAlignment="Top" Width="116" Height="26"/>
+                                <Label Content="Ngày nhận phòng" HorizontalAlignment="Left" Margin="145,70,0,0" VerticalAlignment="Top" Width="109" Height="26"/>
+                                <Label Content="Ngày trả phòng" HorizontalAlignment="Left" Margin="282,70,0,0" VerticalAlignment="Top" Width="98" Height="26"/>
+                                <Label Content="Ghi chú" HorizontalAlignment="Left" Margin="415,70,0,0" VerticalAlignment="Top" Width="78" Height="26"/>
+                                <Label Content="Mã phòng" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Width="77" Height="26"/>
+                                <Label Content="Mã khách hàng" HorizontalAlignment="Left" Margin="145,20,0,0" VerticalAlignment="Top" Width="92" Height="26"/>
+                                <Label Content="Tên khách hàng" HorizontalAlignment="Left" Margin="280,20,0,0" VerticalAlignment="Top" Width="98" Height="26"/>
+                                <Label Content="Địa chỉ" HorizontalAlignment="Left" Margin="413,20,0,0" VerticalAlignment="Top" Width="77" Height="26"/>
+                                <Label Content="Số điện thoại" HorizontalAlignment="Left" Margin="550,20,0,0" VerticalAlignment="Top" Width="89" Height="26"/>
+                                <TextBox x:Name="txt_mabk" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Width="120" Height="20" IsReadOnly="True"/>
+                                <ComboBox x:Name="comb_maphong" HorizontalAlignment="Left" Margin="10,96,0,0" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False"/>
+                                <TextBox x:Name="txt_sdtkh_bk" HorizontalAlignment="Left" Margin="550,46,0,0" VerticalAlignment="Top" Width="120" Height="20" IsReadOnly="True"/>
+                                <TextBox x:Name="txt_dckh_bk" HorizontalAlignment="Left" Margin="415,46,0,0" VerticalAlignment="Top" Width="120" Height="20" IsReadOnly="True"/>
+                                <TextBox x:Name="txt_tenkh_bk" HorizontalAlignment="Left" Margin="280,46,0,0" VerticalAlignment="Top" Width="120" Height="20" IsReadOnly="True"/>
+                                <TextBox x:Name="txt_makh_bk" HorizontalAlignment="Left" Margin="145,46,0,0" VerticalAlignment="Top" Width="120" Height="20" IsReadOnly="True"/>
+                                <TextBox x:Name="txt_gckh_bk" HorizontalAlignment="Left" Margin="820,46,0,0" VerticalAlignment="Top" Width="120" Height="20" IsReadOnly="True"/>
+                                <TextBox x:Name="txt_gcbk" HorizontalAlignment="Left" Margin="415,96,0,0" VerticalAlignment="Top" Width="120" Height="20" IsReadOnly="True"/>
+                                <DatePicker x:Name="dp_nnp" HorizontalAlignment="Left" Margin="145,96,0,0" VerticalAlignment="Top" Width="120" Height="20" BorderBrush="{x:Null}" Padding="0,0,0,0"/>
+                                <DatePicker x:Name="dp_ntp" HorizontalAlignment="Left" Margin="280,96,0,0" VerticalAlignment="Top" Width="120" Height="20" BorderBrush="{x:Null}" Padding="0,0,0,0"/>
+                                <GroupBox Header="Chỉnh sửa" Margin="0,20,0,0" Grid.Row="1"/>
+                                <Button x:Name="bt_dp" Content="Đặt phòng" HorizontalAlignment="Left" Margin="10,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="70" Height="20" Click="bt_dp_Click"/>
+                                <Button x:Name="bt_suabk" Content="Sửa" HorizontalAlignment="Left" Margin="106,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="58" Height="20" Click="bt_suabk_Click" Visibility="Hidden"/>
+                                <Button x:Name="bt_huybk" Content="Hủy phòng" HorizontalAlignment="Left" Margin="190,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="70" Height="20" Click="bt_huybk_Click" Visibility="Hidden"/>
+                                <Button x:Name="bt_rfbk" Content="Làm mới" HorizontalAlignment="Left" Margin="190,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="56" Height="20" Click="bt_rfbk_Click"/>
+                                <Button x:Name="bt_cnbk" Content="Cập nhật" HorizontalAlignment="Left" Margin="10,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="70" Height="20" Click="bt_cnbk_Click" Visibility="Hidden"/>
+                                <Button x:Name="bt_bqbk" Content="Bỏ qua" HorizontalAlignment="Left" Margin="100,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="70" Height="20" Click="bt_bqbk_Click" Visibility="Hidden"/>
+                                <ComboBox x:Name="comb_gtkh_bk" HorizontalAlignment="Left" Margin="685,46,0,0" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False">
+                                    <ComboBoxItem Content="Nam"/>
+                                    <ComboBoxItem Content="Nữ"/>
+                                    <ComboBoxItem Content="Khác"/>
+                                </ComboBox>
+                                <Button x:Name="bt_dtp" Content="Đặt thêm" HorizontalAlignment="Left" Margin="100,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="70" Height="20" Click="bt_dtp_Click"/>
+                                <ComboBox x:Name="comb_makh" HorizontalAlignment="Left" Margin="145,46,0,0" VerticalAlignment="Top" Width="120" Height="20" SelectionChanged="comb_makh_SelectionChanged" Visibility="Hidden"/>
+                                <Button x:Name="bt_bqcnbk" Content="Bỏ qua" HorizontalAlignment="Left" Margin="10,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="70" Height="20" Click="bt_bqcnbk_Click" Visibility="Hidden"/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Dịch vụ" Height="22" Margin="-2,-2,-2,0" VerticalAlignment="Top">
+                            <Grid Background="#FFE5E5E5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="140*"/>
+                                    <RowDefinition Height="85*"/>
+                                    <RowDefinition Height="338*"/>
+                                </Grid.RowDefinitions>
+                                <GroupBox Header="Thông tin" Margin="0,0,0,0"/>
+                                <GroupBox Header="Chỉnh sửa" Margin="0,20,0,0" Grid.Row="1"/>
+                                <GroupBox Header="Danh sách phòng book dịch vụ" Grid.Row="2" Margin="0,20,0,0"/>
+                                <Label Content="Mã bookings" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top" Width="80" Height="26"/>
+                                <Label Content="Số lượng" HorizontalAlignment="Left" Margin="310,20,0,0" VerticalAlignment="Top" Width="80" Height="26"/>
+                                <Label Content="Ghi chú" HorizontalAlignment="Left" Margin="610,20,0,0" VerticalAlignment="Top" Width="80" Height="26"/>
+                                <Label Content="Tên dịch vụ" HorizontalAlignment="Left" Margin="160,70,0,0" VerticalAlignment="Top" Width="80" Height="26"/>
+                                <Label Content="Mã dịch vụ" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Width="80" Height="26"/>
+                                <Label Content="Giá dịch vụ" HorizontalAlignment="Left" Margin="310,70,0,0" VerticalAlignment="Top" Width="80" Height="26"/>
+                                <Label Content="Ngày sử dụng dịch vụ" HorizontalAlignment="Left" Margin="460,20,0,0" VerticalAlignment="Top" Width="130" Height="26"/>
+                                <ComboBox x:Name="comb_mabk" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False" SelectionChanged="comb_mabk_SelectionChanged"/>
+                                <ComboBox x:Name="comb_madv" HorizontalAlignment="Left" Margin="10,96,0,0" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False" SelectionChanged="comb_madv_SelectionChanged"/>
+                                <TextBox x:Name="txt_sldv_bk" HorizontalAlignment="Left" Margin="310,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False"/>
+                                <TextBox x:Name="txt_gcbkdv" HorizontalAlignment="Left" Margin="610,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False"/>
+                                <TextBox x:Name="txt_tdv_bk" HorizontalAlignment="Left" Margin="160,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False"/>
+                                <TextBox x:Name="txt_giadv_bk" HorizontalAlignment="Left" Margin="310,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False"/>
+                                <Button x:Name="bt_bkdv" Content="Books" HorizontalAlignment="Left" Margin="10,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="53" Click="bt_bkdv_Click" Height="20"/>
+                                <Button x:Name="bt_sbkdv" Content="Sửa" HorizontalAlignment="Left" Margin="86,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="53" Height="20" Click="bt_sbkdv_Click"/>
+                                <Button x:Name="bt_hbkdv" Content="Hủy" HorizontalAlignment="Left" Margin="160,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="53" Height="20" Click="bt_hbkdv_Click"/>
+                                <Button x:Name="bt_rfbkdv" Content="Làm mới" HorizontalAlignment="Left" Margin="231,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="53" Height="20" Click="bt_rfbkdv_Click"/>
+                                <Button x:Name="bt_cnbkdv" Content="Cập nhật" HorizontalAlignment="Left" Margin="10,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="60" Height="20" Visibility="Hidden" Click="bt_cnbkdv_Click"/>
+                                <Button x:Name="bt_bqbkdv" Content="Bỏ qua" HorizontalAlignment="Left" Margin="93,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="53" Click="bt_bqbkdv_Click" Height="20" Visibility="Hidden"/>
+                                <DataGrid x:Name="grdt_bkdv" Grid.Row="2" Margin="10,50,10,10" AutoGenerateColumns="False" SelectionChanged="grdt_bkdv_SelectionChanged">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Mã bookings" Binding="{Binding mabooking}" />
+                                        <DataGridTextColumn Header="Mã dịch vụ" Binding="{Binding madv}" />
+                                        <DataGridTextColumn Header="Số lượng" Binding="{Binding soluong}" />
+                                        <DataGridTextColumn Header="Ngày sử dụng" Binding="{Binding ngaydung, StringFormat={}{0:dd/MM/yyyy}}" />
+                                        <DataGridTextColumn Header="Trạng thái" Binding="{Binding trangthai}" />
+                                        <DataGridTextColumn Header="Ghi chú" Binding="{Binding ghichu}" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                                <DatePicker x:Name="dp_nddv" HorizontalAlignment="Left" Margin="460,46,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False" BorderBrush="{x:Null}" Height="20" Padding="0,0,0,0"/>
+                                <Button x:Name="bt_bqcnbkdv" Content="Bỏ qua" HorizontalAlignment="Left" Margin="10,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="53" Click="bt_bqcnbkdv_Click" Height="20" Visibility="Hidden"/>
+                                <Label HorizontalAlignment="Left" Margin="160,20,0,0" VerticalAlignment="Top" Width="80" Height="26" Content="Phòng"/>
+                                <TextBox x:Name="txt_maphong_bkdv" HorizontalAlignment="Left" Margin="160,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False"/>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                    <ToolBar x:Name="toolbar_bk" Margin="0,1,10,0" VerticalAlignment="Top" Height="26" Header="Book" Background="#FFD8E8FB" Grid.ColumnSpan="4"/>
+
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Trả phòng">
+                <Grid Background="#FFE5E5E5">
+                    <TabControl x:Name="tab_traphong" Margin="0,27,0,0" SelectionChanged="tab_traphong_SelectionChanged">
+                        <TabItem x:Name="tab_tt" Header="Thanh toán">
+                            <Grid Background="#FFE5E5E5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="11*"/>
+                                    <ColumnDefinition Width="94*"/>
+                                    <ColumnDefinition Width="1087*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="140*"/>
+                                    <RowDefinition Height="130*"/>
+                                    <RowDefinition Height="313*"/>
+                                </Grid.RowDefinitions>
+                                <GroupBox Header="Thông tin" Grid.Row="0" Grid.ColumnSpan="3"/>
+                                <GroupBox Header="Thanh toán" Grid.Row="1" Margin="0,20,0,302" Grid.ColumnSpan="3" Grid.RowSpan="2" />
+                                <GroupBox Header="Danh sách phòng đang sử dụng" Grid.Row="2" Margin="0,20,0,0" Grid.ColumnSpan="3"/>
+                                <DataGrid x:Name="grdt_phongdangsd" Grid.Row="2" Margin="10,50,10,10" AutoGenerateColumns="False" SelectionChanged="grdt_phongdangsd_SelectionChanged" Grid.ColumnSpan="3">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Mã phòng" Binding="{Binding maphong}" />
+                                        <DataGridTextColumn Header="Số phòng" Binding="{Binding sophong}" />
+                                        <DataGridTextColumn Header="Loại phòng" Binding="{Binding loaiphong}" />
+                                        <DataGridTextColumn Header="Giá" Binding="{Binding gia}" />
+                                        <DataGridTextColumn Header="Trạng thái" Binding="{Binding trangthai}" />
+                                        <DataGridTextColumn Header="Ghi chú" Binding="{Binding ghichu}" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                                <Label Content="Giới tính" HorizontalAlignment="Left" Margin="580,20,0,0" VerticalAlignment="Top" Width="77" Height="26" Grid.Column="2"/>
+                                <Label Content="Ghi chú khách hàng" HorizontalAlignment="Left" Margin="715,20,0,0" VerticalAlignment="Top" Width="116" Height="26" Grid.Column="2"/>
+                                <Label Content="Ngày nhận phòng" HorizontalAlignment="Left" Margin="40,70,0,0" VerticalAlignment="Top" Width="109" Height="26" Grid.Column="2"/>
+                                <Label Content="Ngày trả phòng" HorizontalAlignment="Left" Margin="177,70,0,0" VerticalAlignment="Top" Width="98" Height="26" Grid.Column="2"/>
+                                <Label Content="Mã khách hàng" HorizontalAlignment="Left" Margin="40,20,0,0" VerticalAlignment="Top" Width="92" Height="26" Grid.Column="2"/>
+                                <Label Content="Tên khách hàng" HorizontalAlignment="Left" Margin="175,20,0,0" VerticalAlignment="Top" Width="98" Height="26" Grid.Column="2"/>
+                                <Label Content="Địa chỉ" HorizontalAlignment="Left" Margin="310,20,0,0" VerticalAlignment="Top" Width="77" Height="26" Grid.Column="2"/>
+                                <Label Content="Số điện thoại" HorizontalAlignment="Left" Margin="445,20,0,0" VerticalAlignment="Top" Width="89" Height="26" Grid.Column="2"/>
+                                <TextBox x:Name="txt_sdtkh_tt" HorizontalAlignment="Left" Margin="445,46,0,0" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False" Grid.Column="2"/>
+                                <TextBox x:Name="txt_dckh_tt" HorizontalAlignment="Left" Margin="310,46,0,0" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False" Grid.Column="2"/>
+                                <TextBox x:Name="txt_tenkh_tt" HorizontalAlignment="Left" Margin="175,46,0,0" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False" Grid.Column="2"/>
+
+                                <TextBox x:Name="txt_makh_tt" HorizontalAlignment="Left" Margin="40,46,0,0" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False" Grid.Column="2"/>
+                                <TextBox x:Name="txt_gckh_tt" HorizontalAlignment="Left" Margin="715,46,0,0" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False" Grid.Column="2"/>
+                                <DatePicker x:Name="dp_nnp_tt" HorizontalAlignment="Left" Margin="40,97,0,0" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False" BorderBrush="{x:Null}" Padding="0,0,0,0" Grid.Column="2"/>
+                                <DatePicker x:Name="dp_ntp_tt" HorizontalAlignment="Left" Margin="175,97,0,0" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False" BorderBrush="{x:Null}" Padding="0,0,0,0" Grid.Column="2"/>
+                                <TextBox x:Name="txt_gtkh_tt" HorizontalAlignment="Left" Margin="580,46,0,0" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False" Grid.Column="2"/>
+                                <Label Content="Mã Bookings" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top" Width="81" Height="26" Grid.ColumnSpan="2"/>
+                                <Label Content="Số phòng" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Width="77" Height="26" Grid.ColumnSpan="2"/>
+                                <TextBox x:Name="txt_mabk_tt" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False" Grid.ColumnSpan="3"/>
+                                <TextBox x:Name="txt_sophong_tt" HorizontalAlignment="Left" Margin="10,97,0,0" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False" Grid.ColumnSpan="3"/>
+                                <Label Content="Danh sách dịch vụ đã sử dụng" HorizontalAlignment="Left" Margin="310,70,0,0" VerticalAlignment="Top" Width="173" Height="26" Grid.Column="2"/>
+                                <ComboBox x:Name="comb_dvdsd" HorizontalAlignment="Left" Margin="310,97,0,0" VerticalAlignment="Top" Width="120" Height="20" Grid.Column="2"/>
+                                <Label Content="Phòng" HorizontalAlignment="Left" Margin="10,40,0,0" Grid.Row="1" VerticalAlignment="Top" Height="27" VerticalContentAlignment="Center" Width="70" Grid.ColumnSpan="2"/>
+                                <Label Content="Ngày trả thực tế" HorizontalAlignment="Left" Margin="74,40,0,0" Grid.Row="1" VerticalAlignment="Top" Height="27" VerticalContentAlignment="Center" Width="100" Grid.ColumnSpan="2" Grid.Column="1"/>
+                                <Label Content="Tiền phòng" HorizontalAlignment="Left" Margin="250,40,0,0" Grid.Row="1" VerticalAlignment="Top" Height="27" VerticalContentAlignment="Center" Width="70" Grid.Column="2"/>
+                                <Label Content="Tiền dịch vụ" HorizontalAlignment="Left" Margin="385,40,0,0" Grid.Row="1" VerticalAlignment="Top" Height="27" VerticalContentAlignment="Center" Width="98" Grid.Column="2"/>
+                                <Label Content="Thuế" HorizontalAlignment="Left" Margin="520,40,0,0" Grid.Row="1" VerticalAlignment="Top" Height="27" VerticalContentAlignment="Center" Width="70" Grid.Column="2"/>
+                                <Label Content="Giảm giá" HorizontalAlignment="Left" Margin="655,40,0,0" Grid.Row="1" VerticalAlignment="Top" Height="27" VerticalContentAlignment="Center" Width="70" Grid.Column="2"/>
+                                <Label Content="Tổng tiền" HorizontalAlignment="Left" Margin="790,40,0,0" Grid.Row="1" VerticalAlignment="Top" Height="27" VerticalContentAlignment="Center" Width="70" Grid.Column="2"/>
+                                <ComboBox x:Name="comb_phongdangdung" HorizontalAlignment="Left" Margin="10,66,0,0" Grid.Row="1" VerticalAlignment="Top" Width="60" Height="20" SelectionChanged="comb_phongtra_SelectionChanged" IsEnabled="False" Grid.ColumnSpan="2"/>
+                                <DatePicker x:Name="dp_nttt" HorizontalAlignment="Left" Margin="74,66,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False" SelectedDateChanged="dp_nttt_SelectedDateChanged" BorderBrush="{x:Null}" Padding="0,0,0,0" Grid.ColumnSpan="2" Grid.Column="1"/>
+                                <Label Content="Số ngày ở" HorizontalAlignment="Left" Margin="115,40,0,0" Grid.Row="1" VerticalAlignment="Top" Height="27" VerticalContentAlignment="Center" Width="70" Grid.Column="2"/>
+                                <TextBox x:Name="txt_sno" HorizontalAlignment="Left" Margin="115,66,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False" Grid.Column="2"/>
+                                <TextBox x:Name="txt_tienp" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" Margin="250,66,0,0" IsEnabled="False" Grid.Column="2"/>
+                                <TextBox x:Name="txt_tiendv" HorizontalAlignment="Left" Margin="385,66,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False" Grid.Column="2"/>
+                                <TextBox x:Name="txt_thue" HorizontalAlignment="Left" Margin="520,66,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False" Grid.Column="2"/>
+                                <TextBox x:Name="txt_tongtien" HorizontalAlignment="Left" Margin="790,66,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False" Grid.Column="2"/>
+                                <Button x:Name="bt_thanhtoan" Content="Thanh toán" HorizontalAlignment="Left" Margin="10,95,0,11" Grid.Row="1" Width="70" Click="bt_thanhtoan_Click" Grid.ColumnSpan="2"/>
+                                <Button x:Name="bt_bqtt" Content="Bỏ qua" HorizontalAlignment="Left" Margin="89,105,0,0" Grid.Row="1" VerticalAlignment="Top" Width="70" Click="bt_bqtt_Click" Visibility="Hidden" Grid.ColumnSpan="2" Grid.Column="1"/>
+                                <Button x:Name="bt_cntt" Content="Thanh toán" HorizontalAlignment="Left" Margin="10,105,0,0" Grid.Row="1" VerticalAlignment="Top" Width="70" Visibility="Hidden" Click="bt_cntt_Click" Grid.ColumnSpan="2"/>
+                                <ComboBox x:Name="comb_giamgia" HorizontalAlignment="Left" Margin="655,66,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Height="20" SelectionChanged="comb_giamgia_SelectionChanged" IsEnabled="False" Grid.Column="2">
+                                    <ComboBoxItem Content="5%"/>
+                                    <ComboBoxItem Content="10%"/>
+                                    <ComboBoxItem Content="15%"/>
+                                </ComboBox>
+
+                            </Grid>
+                        </TabItem>
+                        <TabItem x:Name="tab_hd" Header="Hóa đơn">
+                            <Grid Background="#FFE5E5E5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="140*"/>
+                                    <RowDefinition Height="85*"/>
+                                    <RowDefinition Height="338*"/>
+                                </Grid.RowDefinitions>
+                                <GroupBox Header="Thông tin"/>
+                                <GroupBox Header="Chỉnh sửa" Grid.Row="1" Margin="0,20,0,0"/>
+                                <GroupBox Header="Danh sách" Grid.Row="2" Margin="0,20,0,0"/>
+                                <Label Content="Mã bookings" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top" Width="102"/>
+                                <Label Content="Ngày trả phòng" HorizontalAlignment="Left" Margin="150,20,0,0" VerticalAlignment="Top" Width="102"/>
+                                <Label Content="Ngày tạo hóa đơn" HorizontalAlignment="Left" Margin="290,20,0,0" VerticalAlignment="Top" Width="120"/>
+                                <Label Content="Tiền tạm tính" HorizontalAlignment="Left" Margin="430,20,0,0" VerticalAlignment="Top" Width="102"/>
+                                <Label Content="Thuế" HorizontalAlignment="Left" Margin="570,20,0,0" VerticalAlignment="Top" Width="102"/>
+                                <Label Content="Giảm giá" HorizontalAlignment="Left" Margin="710,20,0,0" VerticalAlignment="Top" Width="102"/>
+                                <Label Content="Tổng tiền " HorizontalAlignment="Left" Margin="850,20,0,0" VerticalAlignment="Top" Width="102"/>
+                                <Label Content="Ghi chú" HorizontalAlignment="Left" Margin="990,20,0,0" VerticalAlignment="Top" Width="102"/>
+                                <TextBox x:Name="txt_mabk_hd" HorizontalAlignment="Left" Margin="10,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False"/>
+                                <TextBox x:Name="txt_ttt" HorizontalAlignment="Left" Margin="430,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False"/>
+                                <TextBox x:Name="txt_tt" HorizontalAlignment="Left" Margin="570,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False"/>
+                                <TextBox x:Name="txt_tgg" HorizontalAlignment="Left" Margin="710,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False"/>
+                                <TextBox x:Name="txt_tongtien_hd" HorizontalAlignment="Left" Margin="850,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False"/>
+                                <TextBox x:Name="txt_gchd" HorizontalAlignment="Left" Margin="990,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False"/>
+                                <DatePicker x:Name="dp_ntp_hd" HorizontalAlignment="Left" Margin="150,46,0,0" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False" BorderBrush="{x:Null}" Padding="0,0,0,0"/>
+                                <DatePicker x:Name="dp_nthd" HorizontalAlignment="Left" Margin="290,46,0,0" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False" BorderBrush="{x:Null}" Padding="0,0,0,0"/>
+                                <Button x:Name="bt_suahd" Content="Sửa" HorizontalAlignment="Left" Margin="99,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="52" Click="bt_suahd_Click"/>
+                                <Button x:Name="bt_xoahd" Content="Xóa" HorizontalAlignment="Left" Margin="167,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="52" Click="bt_xoahd_Click"/>
+                                <Button x:Name="bt_rfhd" Content="Refresh" HorizontalAlignment="Left" Margin="239,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="52" Click="bt_rfhd_Click"/>
+                                <Button x:Name="bt_cnhd" Content="Cập nhật" HorizontalAlignment="Left" Margin="10,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="60" Visibility="Hidden" Click="bt_cnhd_Click"/>
+                                <Button x:Name="bt_bqhd" Content="Bỏ qua" HorizontalAlignment="Left" Margin="85,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="52" Click="bt_bqhd_Click" Visibility="Hidden"/>
+                                <DataGrid x:Name="grdt_hd" Grid.Row="2" Margin="10,50,10,10" AutoGenerateColumns="False" SelectionChanged="grdt_hd_SelectionChanged">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Mã hóa đơn" Binding="{Binding mahoadon}" />
+                                        <DataGridTextColumn Header="Mã bookings" Binding="{Binding mabooking}" />
+                                        <DataGridTextColumn Header="Ngày trả thực tế" Binding="{Binding ngaytrathucte, StringFormat={}{0:dd/MM/yyyy}}" />
+                                        <DataGridTextColumn Header="Ngày tạo hóa đơn" Binding="{Binding ngaytaohd, StringFormat={}{0:dd/MM/yyyy}}" />
+                                        <DataGridTextColumn Header="Tạm tính" Binding="{Binding tamtinh}" />
+                                        <DataGridTextColumn Header="Thuế" Binding="{Binding thue}" />
+                                        <DataGridTextColumn Header="Giảm giá" Binding="{Binding giamgia}" />
+                                        <DataGridTextColumn Header="Tổng tiền" Binding="{Binding tong}" />
+                                        <DataGridTextColumn Header="Ghi chú" Binding="{Binding ghichu}" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                                <Label Content="Tên khách hàng" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Width="102"/>
+                                <Label Content="Địa chỉ" HorizontalAlignment="Left" Margin="171,70,0,0" VerticalAlignment="Top" Width="102"/>
+                                <Label Content="Số điện thoại" HorizontalAlignment="Left" Margin="311,70,0,0" VerticalAlignment="Top" Width="102"/>
+                                <TextBox x:Name="txt_tenkh_hd" HorizontalAlignment="Left" Margin="10,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="141" Height="20" IsEnabled="False"/>
+                                <TextBox x:Name="txt_dckh_hd" HorizontalAlignment="Left" Margin="171,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False"/>
+                                <TextBox x:Name="txt_sdtkh_hd" HorizontalAlignment="Left" Margin="311,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False"/>
+                                <Button x:Name="bt_xuathd" Content="Xuất hóa đơn" HorizontalAlignment="Left" Margin="10,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75"/>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                    <ToolBar x:Name="toolbar_tp" Margin="0,1,10,0" VerticalAlignment="Top" Height="26" Background="#FFD8E8FB"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Quản lí">
+                <Grid Background="#FFE5E5E5">
+                    <TabControl x:Name="tab_ql" Margin="0,27,0,0" SelectionChanged="tab_ql_SelectionChanged">
+                        <TabItem x:Name="tab_qlkh" Header="Khách hàng">
+                            <Grid Background="#FFE5E5E5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="20*"/>
+                                    <ColumnDefinition Width="3*"/>
+                                    <ColumnDefinition Width="275*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="90*"/>
+                                    <RowDefinition Height="85*"/>
+                                    <RowDefinition Height="394*"/>
+                                </Grid.RowDefinitions>
+                                <GroupBox Header="Thông tin" Grid.ColumnSpan="3"/>
+                                <GroupBox Header="Thao tác&#xD;&#xA;" Grid.Row="1" Margin="0,20,0,0" Grid.ColumnSpan="3"/>
+                                <GroupBox Header="Danh sách khách hàng" Grid.Row="2" Margin="0,20,0,0" Grid.ColumnSpan="3"/>
+                                <DataGrid x:Name="grdt_kh" Height="NaN" Margin="10,50,10,10" Width="NaN" Grid.Row="2" AutoGenerateColumns="False" SelectionChanged="grdt_kh_SelectionChanged" Grid.ColumnSpan="3">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="ID khách hàng" Binding="{Binding makh}" />
+                                        <DataGridTextColumn Header="Tên khách hàng" Binding="{Binding tenkh}" />
+                                        <DataGridTextColumn Header="Địa chỉ" Binding="{Binding diachi}" />
+                                        <DataGridTextColumn Header="Số điện thoại" Binding="{Binding sdt}" />
+                                        <DataGridTextColumn Header="Giới tính" Binding="{Binding gioitinh}" />
+                                        <DataGridTextColumn Header="Ghi chú" Binding="{Binding ghichu}" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                                <Label Content="Tên khách hàng" HorizontalAlignment="Left" Margin="0,15,0,0" VerticalAlignment="Top" Width="96" Height="26" Grid.Column="2"/>
+                                <Label Content=" ID khách hàng" HorizontalAlignment="Left" Margin="0,56,0,0" VerticalAlignment="Top" Width="96" Height="26" Grid.Column="2"/>
+                                <Label Content="Địa chỉ" HorizontalAlignment="Left" Margin="336,54,0,0" VerticalAlignment="Top" Width="90" Height="26" Grid.Column="2"/>
+                                <Label Content="SĐT" HorizontalAlignment="Left" Margin="336,15,0,0" VerticalAlignment="Top" Width="80" Height="26" Grid.Column="2" RenderTransformOrigin="0.515,0.52"/>
+                                <Label Content="Giới tính" HorizontalAlignment="Left" Margin="684,48,0,0" VerticalAlignment="Top" Width="85" Height="26" Grid.Column="2"/>
+                                <Label Content="Ghi chú" HorizontalAlignment="Left" Margin="684,15,0,0" VerticalAlignment="Top" Width="60" Height="26" Grid.Column="2"/>
+                                <TextBox x:Name="txt_makh" HorizontalAlignment="Left" Margin="112,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False" Grid.Column="2"/>
+                                <TextBox x:Name="txt_tenkh" HorizontalAlignment="Left" Margin="112,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False" Grid.Column="2"/>
+                                <TextBox x:Name="txt_dckh" HorizontalAlignment="Left" Margin="396,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False" Grid.Column="2"/>
+                                <TextBox x:Name="txt_sdtkh" HorizontalAlignment="Left" Margin="396,18,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False" Grid.Column="2"/>
+                                <TextBox x:Name="txt_gckh" HorizontalAlignment="Left" Margin="782,18,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False" Grid.Column="2"/>
+                                <ComboBox x:Name="comb_gtkh" HorizontalAlignment="Left" Margin="782,56,0,0" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False" Grid.Column="2">
+                                    <ComboBoxItem Content="Nam"/>
+                                    <ComboBoxItem Content="Nữ"/>
+                                    <ComboBoxItem Content="Khác"/>
+                                </ComboBox>
+                                <Button x:Name="bt_suakh" Content="Sửa" HorizontalAlignment="Left" Margin="203,52,0,0" Grid.Row="1" VerticalAlignment="Top" Width="40" Click="bt_suakh_Click" Height="20" Grid.Column="2"/>
+                                <Button x:Name="bt_xoakh" Content="Xóa" HorizontalAlignment="Left" Margin="341,52,0,0" Grid.Row="1" VerticalAlignment="Top" Width="40" Click="bt_xoakh_Click" Height="20" Grid.Column="2"/>
+                                <Button x:Name="bt_rfkh" Content="Làm mới" HorizontalAlignment="Left" Margin="458,52,0,0" Grid.Row="1" VerticalAlignment="Top" Width="58" Click="bt_rfkh_Click" Height="20" Grid.Column="2"/>
+                                <Button x:Name="bt_cnkh" Content="Cập nhật" HorizontalAlignment="Left" Margin="15,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="60" Click="bt_cnkh_Click" Height="20" Visibility="Hidden"/>
+                                <Button x:Name="bt_bqkh" Content="Bỏ qua" HorizontalAlignment="Left" Margin="6,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="60" Click="bt_bqkh_Click" Height="20" Visibility="Hidden" Grid.Column="2"/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem x:Name="tab_qlp" Header="Phòng">
+                            <Grid Background="#FFE5E5E5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="90*"/>
+                                    <RowDefinition Height="85*"/>
+                                    <RowDefinition Height="394*"/>
+                                </Grid.RowDefinitions>
+                                <GroupBox Header="Thông Tin"/>
+                                <GroupBox Header="Thao tác&#xD;&#xA;" Grid.Row="1" Margin="0,20,0,0"/>
+                                <GroupBox Header="Danh Sách Phòng" Grid.Row="2" Margin="0,20,0,0"/>
+                                <DataGrid x:Name="grdt_phong"  Height="NaN" Margin="10,50,10,10" Width="NaN" Grid.Row="2" SelectionChanged="grdt_phong_SelectionChanged" AutoGenerateColumns="False">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Mã phòng" Binding="{Binding maphong}" />
+                                        <DataGridTextColumn Header="Số phòng" Binding="{Binding sophong}" />
+                                        <DataGridTextColumn Header="Loại phòng" Binding="{Binding loaiphong}" />
+                                        <DataGridTextColumn Header="Giá" Binding="{Binding gia}" />
+                                        <DataGridTextColumn Header="Trạng thái" Binding="{Binding trangthai}" />
+                                        <DataGridTextColumn Header="Ghi chú" Binding="{Binding ghichu}" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                                <Label HorizontalAlignment="Left" Margin="10,56,0,0" VerticalAlignment="Top" Width="68" Content="Số phòng" Height="26"/>
+                                <Label HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top" Width="68" Content="Mã Phòng" Height="26"/>
+                                <Label HorizontalAlignment="Left" Margin="214,27,0,0" VerticalAlignment="Top" Width="75" Content="Loại phòng" Height="26" RenderTransformOrigin="-0.192,0.489"/>
+                                <Label HorizontalAlignment="Left" Margin="213,59,0,0" VerticalAlignment="Top" Width="81" Content="Giá (ngày)" Height="26" RenderTransformOrigin="-1.721,1.843"/>
+                                <Label Content="Tình trạng" HorizontalAlignment="Left" Margin="430,43,0,0" VerticalAlignment="Top" Width="75" Height="26"/>
+                                <Label Content="Ghi chú" HorizontalAlignment="Left" Margin="683,49,0,0" VerticalAlignment="Top" Width="60" Height="26"/>
+                                <TextBox x:Name="txt_maphong" HorizontalAlignment="Left" Margin="83,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" VerticalContentAlignment="Center" IsEnabled="False" IsReadOnly="True"/>
+                                <TextBox x:Name="txt_sophong" HorizontalAlignment="Left" Margin="83,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" VerticalContentAlignment="Center" IsEnabled="False" TextChanged="txt_sophong_TextChanged"/>
+                                <TextBox x:Name="txt_giaphong" HorizontalAlignment="Left" Margin="294,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" VerticalContentAlignment="Center" IsEnabled="False"/>
+                                <TextBox x:Name="txt_ghichuphong" HorizontalAlignment="Left" Margin="765,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" VerticalContentAlignment="Center" IsEnabled="False"/>
+                                <ComboBox x:Name="cmb_loaiphong" HorizontalAlignment="Left" Margin="294,28,0,0" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False">
+                                    <ComboBoxItem Content="Phòng đơn"/>
+                                    <ComboBoxItem Content="Phòng đôi"/>
+                                    <ComboBoxItem Content="Phòng ba"/>
+                                    <ComboBoxItem Content="Phòng bốn"/>
+                                    <ComboBoxItem Content="Phòng năm"/>
+                                    <ComboBoxItem Content="Phòng gia đình"/>
+                                </ComboBox>
+                                <ComboBox x:Name="cmb_ttphong" HorizontalAlignment="Left" Margin="510,52,0,0" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False">
+                                    <ComboBoxItem Content="Trống"/>
+                                    <ComboBoxItem Content="Đang sử dụng"/>
+                                    <ComboBoxItem Content="Bảo trì"/>
+                                </ComboBox>
+                                <Button x:Name="bt_themphong" Content="Thêm" HorizontalAlignment="Left" Margin="10,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="39" Click="bt_themphong_Click" Height="20"/>
+                                <Button x:Name="bt_suaphong" Content="Sửa" HorizontalAlignment="Left" Margin="69,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="39" Height="20" Click="bt_suaphong_Click"/>
+                                <Button x:Name="bt_xoaphong" Content="Xóa" HorizontalAlignment="Left" Margin="130,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="39" Height="20" Click="bt_xoaphong_Click"/>
+                                <Button x:Name="bt_refresh" Content="Refresh" HorizontalAlignment="Left" Margin="190,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="48" Height="20" Click="bt_refresh_Click"/>
+                                <Button x:Name="bt_capnhatphong" Content="Cập nhật" HorizontalAlignment="Left" Margin="10,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="59" Visibility="Hidden" Height="20" Click="bt_capnhatphong_Click"/>
+                                <Button x:Name="bt_boquaphong" Content="Bỏ qua" HorizontalAlignment="Left" Margin="90,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="54" Visibility="Hidden" Height="20" Click="bt_boquaphong_Click"/>
+                                <Button x:Name="bt_bqcnp" Content="Bỏ qua" HorizontalAlignment="Left" Margin="10,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="55" Click="bt_bqcnp_Click" Height="20" Visibility="Hidden"/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem x:Name="tab_qldv" Header="Dịch vụ">
+                            <Grid Background="#FFE5E5E5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="209*"/>
+                                    <ColumnDefinition Width="983*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="90*"/>
+                                    <RowDefinition Height="85*"/>
+                                    <RowDefinition Height="394*"/>
+                                </Grid.RowDefinitions>
+                                <GroupBox Header="Thông Tin" Grid.ColumnSpan="2"/>
+                                <GroupBox Header="Chỉnh Sửa" Grid.Row="1" Margin="0,20,0,0" Grid.ColumnSpan="2"/>
+                                <GroupBox Header="Danh Sách Dịch Vụ" Grid.Row="2" Margin="0,20,0,0" Grid.ColumnSpan="2"/>
+                                <DataGrid x:Name="grdt_dv"  Height="NaN" Margin="10,50,10,10" Width="NaN" AutoGenerateColumns="False" Grid.Row="2" SelectionChanged="grdt_dv_SelectionChanged" Grid.ColumnSpan="2">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Mã dịch vụ" Binding="{Binding madv}" />
+                                        <DataGridTextColumn Header="Tên dịch vụ" Binding="{Binding tendv}" />
+                                        <DataGridTextColumn Header="Giá" Binding="{Binding gia}" />
+                                        <DataGridTextColumn Header="Ghi chú" Binding="{Binding ghichu}" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                                <Label Content="Tên dịch vụ" HorizontalAlignment="Left" Margin="163,25,0,0" VerticalAlignment="Top" Width="103" Height="26" Grid.ColumnSpan="2"/>
+                                <Label Content="Mã dịch vụ" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top" Width="103" Height="26"/>
+                                <Label Content="Giá dịch vụ" HorizontalAlignment="Left" Margin="104,25,0,0" VerticalAlignment="Top" Width="103" Height="26" Grid.Column="1"/>
+                                <Label Content="Mô Tả " HorizontalAlignment="Left" Margin="256,25,0,0" VerticalAlignment="Top" Width="103" Height="26" Grid.Column="1"/>
+                                <TextBox x:Name="txt_madv" HorizontalAlignment="Left" Margin="10,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False"/>
+                                <TextBox x:Name="txt_giadv" HorizontalAlignment="Left" Margin="104,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False" Grid.Column="1"/>
+                                <TextBox x:Name="txt_gcdv" HorizontalAlignment="Left" Margin="256,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False" Grid.Column="1"/>
+                                <Button x:Name="bt_themdv" Content="Thêm" HorizontalAlignment="Left" Margin="150,54,0,0" Grid.Row="1" VerticalAlignment="Top" Width="43" Click="bt_themdv_Click"/>
+                                <Button x:Name="bt_suadv" Content="Sửa" HorizontalAlignment="Left" Margin="51,54,0,0" Grid.Row="1" VerticalAlignment="Top" Width="43" Click="bt_suadv_Click" RenderTransformOrigin="4.967,0.694" Grid.Column="1"/>
+                                <Button x:Name="bt_xoadv" Content="Xóa" HorizontalAlignment="Left" Margin="155,54,0,0" Grid.Row="1" VerticalAlignment="Top" Width="44" Click="bt_xoadv_Click" Grid.Column="1"/>
+                                <Button x:Name="bt_rfdv" Content="Refresh" HorizontalAlignment="Left" Margin="256,55,0,0" Grid.Row="1" VerticalAlignment="Top" Width="44" Click="bt_rfdv_Click" Grid.Column="1"/>
+                                <Button x:Name="bt_cndv" Content="Cập nhật" HorizontalAlignment="Left" Margin="10,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="60" Click="bt_cndv_Click" Visibility="Hidden"/>
+                                <Button x:Name="bt_bqdv" Content="Bỏ qua" HorizontalAlignment="Left" Margin="92,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="58" Click="bt_bqdv_Click" Visibility="Hidden"/>
+                                <Button x:Name="bt_bqcndv" Content="Bỏ qua" HorizontalAlignment="Left" Margin="10,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="60" Visibility="Hidden" Click="bt_bqcndv_Click"/>
+                                <TextBox x:Name="txt_tendv" HorizontalAlignment="Left" Margin="163,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False" Grid.ColumnSpan="2"/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem x:Name="tab_qlnv" Header="Nhân viên">
+                            <Grid Background="#FFE5E5E5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="150*"/>
+                                    <RowDefinition Height="90*"/>
+                                    <RowDefinition Height="366*"/>
+                                </Grid.RowDefinitions>
+                                <GroupBox Header="Danh sách nhân viên" Grid.Row="2" Margin="0,20,0,0"/>
+                                <DataGrid x:Name="grdt_nv"  Height="NaN" Margin="10,50,10,10" Width="NaN" SelectionChanged="grdt_nv_SelectionChanged" AutoGenerateColumns="False" Grid.Row="2">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="ID" Binding="{Binding id}" />
+                                        <DataGridTextColumn Header="Họ tên" Binding="{Binding name}" />
+                                        <DataGridTextColumn Header="Ngày sinh" Binding="{Binding ngaysinh, StringFormat=\{0:dd/MM/yyyy\}}" />
+                                        <DataGridTextColumn Header="Giới tính" Binding="{Binding gioitinh}" />
+                                        <DataGridTextColumn Header="Địa chỉ" Binding="{Binding address}" />
+                                        <DataGridTextColumn Header="Quyền" Binding="{Binding quyen}" />
+                                        <DataGridTextColumn Header="Tên đăng nhập" Binding="{Binding tendangnhap}" />
+                                        <DataGridTextColumn Header="Mật khẩu" Binding="{Binding matkhau}" />
+                                        <DataGridTextColumn Header="Mô tả" Binding="{Binding mota}" />
+                                        <DataGridTextColumn Header="Ghi chú" Binding="{Binding ghichu}" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                                <GroupBox Header="GroupBox" Grid.Row="0"/>
+                                <TextBox x:Name="txt_tdnnv" HorizontalAlignment="Left" Margin="229,35,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False" Height="20"/>
+                                <TextBox x:Name="txt_tnv" HorizontalAlignment="Left" Margin="19,77,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False" Height="20"/>
+                                <TextBox x:Name="txt_mknv" HorizontalAlignment="Left" Margin="476,38,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False" Height="20"/>
+                                <TextBox x:Name="txt_mtnv" HorizontalAlignment="Left" Margin="229,90,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False" Height="20"/>
+                                <TextBox x:Name="txt_gcnv" HorizontalAlignment="Left" Margin="706,90,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False" Height="20"/>
+                                <TextBox x:Name="txt_dcnv" HorizontalAlignment="Left" Margin="706,38,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False" Height="20"/>
+                                <Label HorizontalAlignment="Left" Margin="32,41,0,0" VerticalAlignment="Top" Width="120" Height="26" Content="Tên nhân viên"/>
+                                <Label HorizontalAlignment="Left" Margin="135,28,0,0" VerticalAlignment="Top" Width="120" Height="26" Content="Tên đăng nhập"/>
+                                <Label HorizontalAlignment="Left" Margin="373,35,0,0" VerticalAlignment="Top" Width="120" Height="26" Content="Mật khẩu"/>
+                                <Label HorizontalAlignment="Left" Margin="613,37,0,0" VerticalAlignment="Top" Width="120" Height="26" Content="Địa chỉ"/>
+                                <Label HorizontalAlignment="Left" Margin="831,79,0,0" VerticalAlignment="Top" Width="120" Height="26" Content="Ngày sinh"/>
+                                <Label HorizontalAlignment="Left" Margin="831,31,0,0" VerticalAlignment="Top" Width="120" Height="26" Content="Giới tính"/>
+                                <Label HorizontalAlignment="Left" Margin="156,84,0,0" VerticalAlignment="Top" Width="120" Height="26" Content="Mô tả"/>
+                                <Label HorizontalAlignment="Left" Margin="386,87,0,0" VerticalAlignment="Top" Width="120" Height="26" Content="Quyền"/>
+                                <Label HorizontalAlignment="Left" Margin="613,84,0,0" VerticalAlignment="Top" Width="120" Height="26" Content="Ghi chú"/>
+                                <ComboBox x:Name="comb_gtnv" HorizontalAlignment="Left" Margin="914,34,0,0" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False" >
+                                    <ComboBoxItem Content="Nam"/>
+                                    <ComboBoxItem Content="Nữ"/>
+                                    <ComboBoxItem Content="Khác"/>
+                                </ComboBox>
+                                <GroupBox Header="Chỉnh sửa" Margin="0,20,0,0" Grid.Row="1"/>
+                                <Button x:Name="bt_them" Content="Thêm" HorizontalAlignment="Left" Margin="217,45,0,0" VerticalAlignment="Top" Width="72" Click="bt_them_Click" Height="20" Grid.Row="1"/>
+                                <Button x:Name="bt_sua" Content="Sửa" HorizontalAlignment="Left" Margin="361,42,0,0" VerticalAlignment="Top" Width="72" Click="bt_sua_Click" Height="20" Grid.Row="1" />
+                                <Button x:Name="bt_xoa" Content="Xóa" HorizontalAlignment="Left" Margin="491,42,0,0" VerticalAlignment="Top" Width="72" Click="bt_xoa_Click" Height="20" Grid.Row="1"/>
+                                <Button x:Name="bt_lammoi" Content="Làm mới" HorizontalAlignment="Left" Margin="625,42,0,0" VerticalAlignment="Top" Width="64" Click="bt_lammoi_Click" Height="20" Grid.Row="1"/>
+                                <Button x:Name="bt_capnhatnv" Content="Cập nhật" HorizontalAlignment="Left" Margin="11,50,0,0" VerticalAlignment="Top" Width="72" Click="bt_capnhatnv_Click" Grid.Row="1" Height="20" Visibility="Hidden"/>
+                                <Button x:Name="bt_boquanv" Content="Bỏ qua" HorizontalAlignment="Left" Margin="103,50,0,0" VerticalAlignment="Top" Width="72" Click="bt_boquanv_Click" Grid.Row="1" Height="20" Visibility="Hidden"/>
+                                <DatePicker x:Name="dp_nsnv" HorizontalAlignment="Left" Margin="914,79,0,0" VerticalAlignment="Top" Width="120" DisplayDate="2023-09-05" IsEnabled="False" BorderBrush="{x:Null}" Padding="0,0,0,0"/>
+                                <ComboBox x:Name="comb_quyen" HorizontalAlignment="Left" Margin="476,94,0,0" VerticalAlignment="Top" Width="120" Height="20" IsEnabled="False" >
+                                    <ComboBoxItem Content="Nhân viên"/>
+                                    <ComboBoxItem Content="Quản lí"/>
+                                    <ComboBoxItem Content="Giám đốc"/>
+                                </ComboBox>
+                                <Button x:Name="bt_bqcn" Content="Bỏ qua" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Width="72" Click="bt_bqcn_Click" Height="20" Grid.Row="1" Visibility="Hidden"/>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                    <ToolBar x:Name="toolbar_ql" Margin="0,1,10,0" VerticalAlignment="Top" Height="26" Header="Quản lí" Background="#FFD8E8FB"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>
